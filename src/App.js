@@ -8,6 +8,7 @@ function App() {
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [data,setData] = useState(null);
 
 
   const register = () => {
@@ -37,7 +38,7 @@ function App() {
     method: "GET",
     withCredentials: true,
     url: "http://localhost:4000/user",
-  }).then((res) => console.log(res));};
+  }).then((res) => setData(res.data))};
 
   return (
     <div className="App">
@@ -58,6 +59,7 @@ function App() {
       <div class="container">
        <h1>Get User</h1>  
        <button onClick = {getUser}> Submit </button>
+  {data ? <h1>Welcome Back {data.username}</h1> : null}
       </div>
       
     </div>
